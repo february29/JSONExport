@@ -56,6 +56,7 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate, NSTabl
     //Connected to Utility Methods check box
     @IBOutlet weak var generateUtilityMethods: NSButtonCell!
     
+    @IBOutlet weak var camelCase: NSButtonCell!
     //Connected to root class name field
     @IBOutlet weak var classNameField: NSTextFieldCell!
     
@@ -221,6 +222,11 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate, NSTabl
     
     @IBAction func toggleUtilities(_ sender: AnyObject)
     {
+        generateClasses()
+    }
+    
+    
+    @IBAction func toggleCamelCase(_ sender: Any) {
         generateClasses()
     }
     
@@ -457,6 +463,7 @@ class ViewController: NSViewController, NSUserNotificationCenterDelegate, NSTabl
         let filesBuilder = FilesContentBuilder.instance
         filesBuilder.includeConstructors = (generateConstructors.state == NSOnState)
         filesBuilder.includeUtilities = (generateUtilityMethods.state == NSOnState)
+        filesBuilder.useCamelCase = (camelCase.state == NSOnState)
         filesBuilder.firstLine = firstLineField.stringValue
         filesBuilder.lang = selectedLang!
         filesBuilder.classPrefix = classPrefixField.stringValue
